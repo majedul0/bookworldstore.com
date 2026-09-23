@@ -1,4 +1,9 @@
-FROM php:8.2-fpm
+# Pinned to bookworm (Debian 12) rather than the untagged default
+# (which now resolves to trixie/Debian 13): trixie's newer xz-utils
+# tries to enable a Landlock sandbox during package installs, which
+# fails ("xz: Failed to enable the sandbox") on VPS virtualization
+# layers that don't expose that kernel feature to the guest.
+FROM php:8.2-fpm-bookworm
 
 RUN apt-get update && apt-get install -y \
         git \
