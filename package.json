@@ -1,4 +1,5 @@
 {
+    "name": "al-amin-inventory",
     "private": true,
     "scripts": {
         "dev": "vite",

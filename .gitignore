@@ -43,3 +43,11 @@ Thumbs.db
 !/storage/framework/views/.gitignore
 !/storage/framework/testing/.gitignore
 !/storage/app/public/.gitignore
+
+# Docker
+/docker/mysql/init/*.sql
+!/docker/mysql/init/.gitkeep
+/docker/mysql/data
+
+# Compiled front-end assets (built by the `node` compose service)
+/public/build
