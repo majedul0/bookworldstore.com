@@ -1,0 +1,121 @@
+/* Menu Style A */
+
+.main_menu {
+    background: #fff;
+    border-top: 1px solid #E5E5E5;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.menu_style_a {
+    /* height: 66px; */
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu_style_a ul {
+    position: relative;
+}
+
+.menu_style_a ul li {
+    float: left;
+}
+
+.menu_style_a ul li a {
+    color: #333;
+    font-size: 15px;
+    line-height: 21px;
+    font-weight: 600;
+    display: block;
+    text-decoration: none;
+    padding: 5px 3px;
+    padding-right: 20px;
+    border-radius: 4px 4px 0 0;
+}
+
+.menu_style_a ul li:hover {
+    color: #fff;
+}
+.menu_style_a ul li:hover a {
+    background: #333333;
+    color: #fff;
+}
+
+.menu_style_a ul li a i {}
+
+
+
+
+/* Mega Menu */
+
+.menu_style_a ul li ul {
+    width: 1110px;
+    max-width: 70vw;
+    position: absolute;
+    display: none;
+    z-index: 999;
+    left: 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .4);
+    background: #fff;
+    padding: 25px 0;
+    border-top: 4px solid #343434;
+}
+
+.menu_style_a ul li:hover ul {
+    display: block;
+}
+
+.menu_style_a ul li ul li {
+    float: left;
+    width: 25%;
+    display: inline-block;
+    /* border-right: 1px solid #DEDDDD; */
+    padding: 10px 0;
+}
+
+.menu_style_a ul li:hover ul li a {
+    background: #fff;
+    color: #000;
+    font-size: 16px;
+    padding: 5px 19px;
+}
+
+.menu_style_a ul li ul li a:hover {}
+
+
+/* Mega Menu Sub Items */
+
+.menu_style_a ul li ul li ul {
+    position: unset;
+    border: 0;
+    width: 100%;
+    box-shadow: none;
+    padding: 0;
+}
+
+.menu_style_a ul li ul li ul li {
+    display: block;
+    border: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.menu_style_a ul li:hover ul li ul li a {
+    padding: 3px 18px;
+    color: #696763;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.menu_style_a ul li:hover ul li:hover ul li:hover a {
+    color: #414141;
+}
+
+
+/* End Mega Menu Sub Items */
+
+
+/* End Mega Menu */
+
+
+/* End Main Menu Section */

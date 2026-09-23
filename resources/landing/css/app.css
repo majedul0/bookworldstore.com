@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+--primary: #db2877;
+}
+.dynamic_style h1, .dynamic_style h2, .dynamic_style h3, .dynamic_style h4, .dynamic_style h5, .dynamic_style h6 {
+margin-top: 0;
+margin-bottom: 0.5rem;
+}
+
+.dynamic_style h1 {
+font-size: 2.5rem;
+}
+
+.dynamic_style h2 {
+font-size: 2rem;
+}
+
+.dynamic_style h3 {
+font-size: 1.75rem;
+}
+
+.dynamic_style h4 {
+font-size: 1.5rem;
+}
+
+.dynamic_style h5 {
+font-size: 1.25rem;
+}
+
+.dynamic_style h6 {
+font-size: 1rem;
+}
+
+.dynamic_style ol,
+.dynamic_style ul,
+.dynamic_style dl {
+margin-top: 0;
+margin-bottom: 1rem;
+}
+
+.dynamic_style ol ol,
+.dynamic_style ul ul,
+.dynamic_style ol ul,
+.dynamic_style ul ol {
+margin-bottom: 0;
+}
+
+.dynamic_style ul{display: block;
+list-style-type: disc;
+margin-block-start: 1em;
+margin-block-end: 1em;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+padding-inline-start: 40px;}
+
+.dynamic_style ol{    display: block;
+list-style-type: decimal;
+margin-block-start: 1em;
+margin-block-end: 1em;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+padding-inline-start: 40px;}
+/* Loader Animation */
+.loader {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+text-align: center;
+font-size: 40px;
+background: rgb(0, 0, 0, .8);
+height: 100vh;
+z-index: 999999;
+color: #fff;
+padding-top: 45vh;
+}
+.loader img{width: 40px;-webkit-animation: switch-loader 2s infinite linear;animation: switch-loader 2s infinite linear;display: inline-block}
+
+@-webkit-keyframes switch-loader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes switch-loader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+/* End Loader Animation */
+
+.slider-container {
+    overflow: hidden;
+}
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    min-width: 80%;
+    margin-right: 2%;
+    flex-shrink: 0;
+}
+/* Added low opacity for next slide visibility */
+.slide:not(.active) {
+    opacity: 0.4;
+}
+.slide.active {
+    opacity: 1;
+}
+.dot {
+    width: 32px;
+    height: 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.dot.active {
+    background-color: #3b82f6;
+}
+.dot:not(.active) {
+    background-color: #d1d5db;
+}
+
+/* Mombile Screen */
+@media (max-width: 768px) {
+    .swiper-button-next:after, .swiper-button-prev:after {
+        font-size: 20px;
+    }
+}

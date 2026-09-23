@@ -1,0 +1,51 @@
+/* Extra Small Device */
+@media (max-width: 767px) {
+    .content-wrapper{margin-left: 0;}
+    .main-sidebar{left: -230px;top: 0;margin-top: 50px;}
+    .left_menu li{    float: unset;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: var(--primary_hover_color);
+        width: 100%;}
+    .left_menu{margin-left: 0 !important;    height: 80px;}
+    .left_menu li a.app_name{width: 100%;background: none;}
+    .header_right_items{margin-right: 0;}
+    .content-header .ch_breadcrumb{background: #d2d6de;
+        padding: 3px 6px;
+        margin-top: 10px;
+        border-radius: 2px;
+        font-size: 14px;}
+    .content-header h1{font-size: 21px;}
+    .content-header small{font-size: 12px;}
+    .content{    min-height: calc(100vh - 146px);}
+    .mobile_active{left: 0;}
+
+    .product_info_card{height: auto;}
+    header {
+        height: 50px;
+    }
+    .header_right_items li a {
+        margin: 4px 0;
+    }
+}
+
+
+/* Small Device */
+@media (min-width: 768px) {
+
+
+}
+
+/* Medium   Device */
+@media (min-width: 992px) {
+
+
+}
+
+/* Large Device */
+@media (min-width: 1200px) {
+
+
+}

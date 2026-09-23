@@ -1,0 +1,15 @@
+@page  {
+    margin: 20px;
+}
+
+.print{display: block !important;}
+.noPrint{display: none !important;}
+.content-wrapper{margin-left: 0;}
+
+.dt-buttons{display: none !important;}
+#dataTable_filter{display: none !important;}
+a[href]:after {
+content: none !important;
+}
+
+.fa-globe:before, .fa-phone:before{background: unset !important;color: white !important;}

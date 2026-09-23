@@ -1,0 +1,38 @@
+@extends('back.layouts.master')
+@section('title', 'Customer Details')
+
+@section('master')
+<div class="card border-light mt-3 shadow">
+    <div class="card-header">
+        <h5 class="d-inline-block">Customer Ledger of <b>{{$user->full_name}}</b></h5>
+    </div>
+    <div class="card-body table-responsive">
+        <table class="table table-bordered table-sm" id="dataTable">
+            <thead>
+              <tr>
+                <th scope="col">SL.</th>
+                <th scope="col">Invoice 1</th>
+                <th scope="col">Invoice 2</th>
+                <th scope="col">Debit</th>
+                <th scope="col">Credit</th>
+                <th scope="col">Current Balance</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach ($ledgers as $ledger)
+                    <tr>
+                        <th scope="row">{{$loop->index + 1}}</th>
+                        <td>{{$ledger->invoice_no_1}}</td>
+                        <td>{{$ledger->invoice_no_2}}</td>
+                        <td>{{amount($ledger->debit)}}</td>
+                        <td>{{amount($ledger->credit)}}</td>
+                        <td>{{amount($ledger->current_balance)}}</td>
+                        <td>{{$ledger->description}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection
