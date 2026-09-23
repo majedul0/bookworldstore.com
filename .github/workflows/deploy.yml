@@ -1,0 +1,73 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    timeout-minutes: 20
+    steps:
+      - name: Sync repo on the server
+        run: |
+          set -e
+          cd /settings/bookworldstore.com
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Rebuild and restart containers
+        run: |
+          set -e
+          cd /settings/bookworldstore.com
+          docker compose -f docker-compose.prod.yml up -d --build
+
+      - name: Wait for app container to be ready
+        run: |
+          set -e
+          cd /settings/bookworldstore.com
+          for i in $(seq 1 30); do
+            if docker compose -f docker-compose.prod.yml exec -T app php artisan --version >/dev/null 2>&1; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "app container never became ready" >&2
+          exit 1
+
+      - name: Install PHP dependencies
+        run: |
+          set -e
+          cd /settings/bookworldstore.com
+          docker compose -f docker-compose.prod.yml exec -T app composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Run migrations
+        run: |
+          set -e
+          cd /settings/bookworldstore.com
+          docker compose -f docker-compose.prod.yml exec -T app php artisan migrate --force
+
+      - name: Clear and warm caches
+        run: |
+          set -e
+          cd /settings/bookworldstore.com
+          docker compose -f docker-compose.prod.yml exec -T app php artisan config:clear
+          docker compose -f docker-compose.prod.yml exec -T app php artisan cache:clear
+          docker compose -f docker-compose.prod.yml exec -T app php artisan view:clear
+
+      - name: Restart nginx (picks up app container's IP if it was recreated)
+        run: |
+          set -e
+          cd /settings/bookworldstore.com
+          docker compose -f docker-compose.prod.yml restart webserver
+
+      - name: Health check
+        run: |
+          set -e
+          sleep 3
+          code=$(curl -sS -o /dev/null -w "%{http_code}" http://127.0.0.1:8082/)
+          echo "app responded with HTTP $code"
+          if [ "$code" != "200" ]; then
+            exit 1
+          fi
