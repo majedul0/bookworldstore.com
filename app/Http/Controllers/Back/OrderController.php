@@ -451,9 +451,11 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        //
+        $order->delete();
+
+        return redirect()->back()->with('success-alert', 'Order deleted successfully.');
     }
 
     // Add Item
@@ -559,7 +561,13 @@ class OrderController extends Controller
             $nestedData['status'] = $data->status . ($data->printed_at ? '<i class="fas fa-print ml-1 small"></i>' : '');
             $nestedData['tax_amount'] = amount($data->tax_amount, 2);
             $nestedData['payment_status'] = $data->payment_status;
-            $nestedData['action'] = '<div><a class="btn btn-success btn-sm" href="'. route('back.orders.show', $data->id) .'">Details</a></div>';
+            $nestedData['action'] = '<div>'
+                .'<a class="btn btn-success btn-sm" href="'. route('back.orders.show', $data->id) .'">Details</a> '
+                .'<form class="d-inline-block" action="'. route('back.orders.destroy', $data->id) .'" method="POST">'
+                    .method_field('DELETE') . csrf_field()
+                    .'<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure to remove?\')"><i class="fas fa-trash"></i></button>'
+                .'</form>'
+            .'</div>';
             $nestedData['staff_note'] = $data->staff_note;
             $output[] = $nestedData;
         }
