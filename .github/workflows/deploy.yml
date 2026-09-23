@@ -36,6 +36,18 @@ jobs:
           echo "app container never became ready" >&2
           exit 1
 
+      - name: Wait for front-end assets to build
+        run: |
+          set -e
+          cd /settings/bookworldstore.com
+          # node runs `npm install && npm run build` then exits; without
+          # waiting for it, requests can hit the app mid-build with no
+          # public/build/manifest.json yet, causing a real 500
+          # (ViteManifestNotFoundException) on whatever page happens to
+          # load first — including our own health check below.
+          docker compose -f docker-compose.prod.yml wait node
+          test -f public/build/manifest.json
+
       - name: Install PHP dependencies
         run: |
           set -e
