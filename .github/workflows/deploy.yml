@@ -66,7 +66,12 @@ jobs:
         run: |
           set -e
           sleep 3
-          code=$(curl -sS -o /dev/null -w "%{http_code}" http://127.0.0.1:8082/)
+          # Host header must match the real domain: the app caches
+          # settings (including absolute asset URLs like the logo)
+          # keyed off the first request's host after cache:clear, so a
+          # bare curl here (defaulting to Host: 127.0.0.1:8082) would
+          # poison that 90-day cache with the wrong host.
+          code=$(curl -sS -o /dev/null -w "%{http_code}" -H "Host: bookworldstore.com" http://127.0.0.1:8082/)
           echo "app responded with HTTP $code"
           if [ "$code" != "200" ]; then
             exit 1
