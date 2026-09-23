@@ -1,6 +1,18 @@
-# alhijab.xyz
+# Book World Store
 
-# New Design
-https://www.figma.com/proto/KP0oov5QJqKs1jkgUEJY4D/Baby-Burka?page-id=0%3A1&node-id=2-315&viewport=549%2C129%2C0.21&t=eT7CkT3JaIecOVas-1&scaling=min-zoom&content-scaling=fixed
+Laravel-based e-commerce site for [bookworldstore.com](https://bookworldstore.com).
 
-https://www.figma.com/design/KP0oov5QJqKs1jkgUEJY4D/Baby-Burka?node-id=2-315&t=e0hTyIdO2cDfhfPX-0
+## Local development
+
+Requires Docker Desktop.
+
+```bash
+cp .env.example .env
+docker compose up -d --build
+```
+
+The site is then available at http://localhost:8080, Mailpit (catches outgoing dev email) at http://localhost:8025.
+
+## Production
+
+Deployed via Docker Compose (`docker-compose.prod.yml`) on a VPS, with a self-hosted GitHub Actions runner auto-deploying on every push to `main` (see `.github/workflows/deploy.yml`).
