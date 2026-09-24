@@ -1,5 +1,5 @@
 <div class="py-4">
-    <ol class="text-[#01425f] text-sm">
+    <ol class="text-black text-sm">
         <li class="inline-block">
             <a href="{{route('homepage')}}" class="hover:underline">Home</a>
             <span>/</span>

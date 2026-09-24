@@ -303,6 +303,10 @@ class FrontendController extends Controller
         $insert['value'] = $request->tiktok;
         DB::table('settings')->updateOrInsert($where, $insert);
 
+        $where['name'] = 'whatsapp';
+        $insert['value'] = $request->whatsapp;
+        DB::table('settings')->updateOrInsert($where, $insert);
+
         $where['name'] = 'instagram';
         $insert['value'] = $request->instagram;
         DB::table('settings')->updateOrInsert($where, $insert);

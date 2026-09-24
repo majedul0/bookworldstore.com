@@ -43,10 +43,13 @@
                 <a href="{{ $socials['facebook'] }}" class="transition hover:text-gray-300"><i class="fab fa-facebook"></i></a>
                 @endif
                 @if ($socials['youtube'] ?? null)
-                <a href="{{$socials['youtube']}}" class="transition hover:text-ref-200"><i class="fab fa-youtube"></i></a>
+                <a href="{{$socials['youtube']}}" class="transition hover:text-gray-300"><i class="fab fa-youtube"></i></a>
                 @endif
                 @if ($socials['tiktok'] ?? null)
-                <a href="{{$socials['tiktok']}}" class="transition hover:text-black-200"><i class="fab fa-tiktok"></i></a>
+                <a href="{{$socials['tiktok']}}" class="transition hover:text-gray-300"><i class="fab fa-tiktok"></i></a>
+                @endif
+                @if ($socials['whatsapp'] ?? null)
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $socials['whatsapp']) }}" target="_blank" class="transition hover:text-gray-300"><i class="fab fa-whatsapp"></i></a>
                 @endif
             </div>
         </div>
@@ -155,20 +158,25 @@
     <div class="fixed inset-0 z-40 hidden bg-black/50" id="mobileMenuOverlay"></div>
 
     <!-- Fixed Social Media Icons -->
-    <div class="social-fixed hidden flex-col gap-3 rounded-l-lg bg-white p-3 shadow-lg lg:flex">
+    <div class="social-fixed flex flex-col gap-3 rounded-l-lg bg-white p-2 md:p-3 shadow-lg">
         @if ($socials['facebook'] ?? null)
-        <a href="{{$socials['facebook']}}" class="transform text-2xl text-black transition hover:scale-110 hover:text-gray-700">
+        <a href="{{$socials['facebook']}}" class="transform text-xl md:text-2xl text-black transition hover:scale-110 hover:text-gray-700">
             <i class="fab fa-facebook"></i>
         </a>
         @endif
         @if ($socials['youtube'] ?? null)
-        <a href="{{$socials['youtube']}}" class="transform text-2xl text-pink-600 transition hover:scale-110 hover:text-pink-700">
+        <a href="{{$socials['youtube']}}" class="transform text-xl md:text-2xl text-pink-600 transition hover:scale-110 hover:text-pink-700">
             <i class="fab fa-youtube"></i>
         </a>
         @endif
         @if ($socials['tiktok'] ?? null)
-        <a href="{{$socials['tiktok']}}" class="transform text-2xl text-gray-800 transition hover:scale-110 hover:text-gray-900">
+        <a href="{{$socials['tiktok']}}" class="transform text-xl md:text-2xl text-gray-800 transition hover:scale-110 hover:text-gray-900">
             <i class="fab fa-tiktok"></i>
+        </a>
+        @endif
+        @if ($socials['whatsapp'] ?? null)
+        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $socials['whatsapp']) }}" target="_blank" class="transform text-xl md:text-2xl text-green-600 transition hover:scale-110 hover:text-green-700">
+            <i class="fab fa-whatsapp"></i>
         </a>
         @endif
     </div>
@@ -220,6 +228,9 @@
                                     @endif
                                     @if ($socials['tiktok'] ?? null)
                                     <a href="{{$socials['tiktok']}}" class="transition hover:text-white"><i class="fab fa-tiktok text-xl"></i></a>
+                                    @endif
+                                    @if ($socials['whatsapp'] ?? null)
+                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $socials['whatsapp']) }}" target="_blank" class="transition hover:text-white"><i class="fab fa-whatsapp text-xl"></i></a>
                                     @endif
                                 </li>
                             </ul>

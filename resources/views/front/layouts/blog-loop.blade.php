@@ -7,6 +7,6 @@
         <h5>{{$blog['title']}}</h5>
         <p>{{$blog['short_description'] ?? $blog['title']}}</p>
 
-        <a href="{{route('blog', $blog['id'])}}" class="bg-[#01425f] text-white hover:bg-[#01425f] px-4 py-2 rounded-lg inline-block mt-4">Read More</a>
+        <a href="{{route('blog', $blog['id'])}}" class="bg-black text-white hover:bg-gray-800 px-4 py-2 rounded-lg inline-block mt-4">Read More</a>
     </div>
 </div>

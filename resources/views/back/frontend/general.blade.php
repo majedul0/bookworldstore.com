@@ -331,6 +331,13 @@
                             <input type="text" class="form-control form-control-sm" placeholder="Tiktok" name="tiktok" value="{{Info::Settings('social', 'tiktok') ?? ''}}">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label col-form-label-sm"><b>WhatsApp: </b></label>
+                            <div class="col-sm-8">
+                            <input type="text" class="form-control form-control-sm" placeholder="e.g. +8801XXXXXXXXX" name="whatsapp" value="{{Info::Settings('social', 'whatsapp') ?? ''}}">
+                            <small class="text-muted">Enter the phone number with country code. Customers will be able to message this number directly via WhatsApp.</small>
+                            </div>
+                        </div>
                         {{-- <div class="form-group row">
                             <label class="col-sm-2 col-form-label col-form-label-sm"><b>LinkedIn: </b></label>
                             <div class="col-sm-8">

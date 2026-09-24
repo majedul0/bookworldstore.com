@@ -150,7 +150,7 @@
                         </div>
                     </div>
 
-                    <button type="button" class="cursor-pointer w-full bg-[#2E5E99] hover:bg-[#2E5E99]/80 text-white font-bold py-3 md:py-4 rounded-lg text-lg transition-colors shadow-md hover:shadow-lg" onclick="addToCart('{{$product->id}}', 'single')">
+                    <button type="button" class="cursor-pointer w-full bg-black hover:bg-gray-800 text-white font-bold py-3 md:py-4 rounded-lg text-lg transition-colors shadow-md hover:shadow-lg" onclick="addToCart('{{$product->id}}', 'single')">
                         ADD TO CART
                     </button>
                 </div>

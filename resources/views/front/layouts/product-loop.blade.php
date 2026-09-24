@@ -35,11 +35,11 @@
                 <span class="text-gray-900 font-bold text-base md:text-xl">৳{{number_format($product->sale_price)}}</span>
             </div>
             @if($product->type == 'Variable')
-            <a href="{{route('product', $product->id)}}"  class="w-full inline-block text-center bg-[#2E5E99] hover:bg-[#2E5E99]/80 text-white font-bold py-2 md:py-3 text-sm md:text-base rounded-lg transition-colors duration-200">
+            <a href="{{route('product', $product->id)}}"  class="w-full inline-block text-center bg-black hover:bg-gray-800 text-white font-bold py-2 md:py-3 text-sm md:text-base rounded-lg transition-colors duration-200">
                 SELECT OPTION
             </a>
             @else
-            <button onclick="addToCart({{$product->id}})" class="w-full inline-block text-center bg-[#2E5E99] hover:bg-[#2E5E99]/80 text-white font-bold py-2 md:py-3 text-sm md:text-base rounded-lg transition-colors duration-200">
+            <button onclick="addToCart({{$product->id}})" class="w-full inline-block text-center bg-black hover:bg-gray-800 text-white font-bold py-2 md:py-3 text-sm md:text-base rounded-lg transition-colors duration-200">
                 ADD TO CART
             </button>
             @endif
