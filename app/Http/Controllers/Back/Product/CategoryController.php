@@ -40,7 +40,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('category_id', null)->where('for', 'product')->latest('id')->get();
+        $categories = Category::with('Categories')->where('category_id', null)->where('for', 'product')->latest('id')->get();
         return view('back.product.category.create', compact('categories'));
     }
 

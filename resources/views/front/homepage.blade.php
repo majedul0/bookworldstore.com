@@ -39,12 +39,12 @@
                     @include('front.layouts.product-loop')
                 @endforeach
             </div>
-            <button id="prev1" class="absolute top-1/2 -translate-y-1/2 left-1 hover:bg-green-500 hover:text-black bg-gray-200/60 p-2 rounded-full shadow-md transition-all cursor-pointer opacity-65 duration-300 z-10">
+            <button id="prev1" class="absolute top-1/2 -translate-y-1/2 left-1 hover:bg-black hover:text-white bg-gray-200/60 p-2 rounded-full shadow-md transition-all cursor-pointer opacity-65 duration-300 z-10">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                     <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clip-rule="evenodd" />
                 </svg>
             </button>
-            <button id="next1" class="absolute top-1/2 -translate-y-1/2 right-1 hover:bg-green-500 hover:text-black bg-gray-200/60 p-2 rounded-full shadow-md transition-all duration-300 z-10 cursor-pointer opacity-65">
+            <button id="next1" class="absolute top-1/2 -translate-y-1/2 right-1 hover:bg-black hover:text-white bg-gray-200/60 p-2 rounded-full shadow-md transition-all duration-300 z-10 cursor-pointer opacity-65">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                     <path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd" />
                 </svg>
@@ -87,12 +87,12 @@
                         @include('front.layouts.product-loop')
                     @endforeach
                 </div>
-                <button id="prev2" class="absolute top-1/2 -translate-y-1/2 left-1 hover:bg-green-500 hover:text-black bg-gray-200/60 p-2 rounded-full shadow-md transition-all cursor-pointer opacity-65 duration-300 z-10">
+                <button id="prev2" class="absolute top-1/2 -translate-y-1/2 left-1 hover:bg-black hover:text-white bg-gray-200/60 p-2 rounded-full shadow-md transition-all cursor-pointer opacity-65 duration-300 z-10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clip-rule="evenodd" />
                     </svg>
                 </button>
-                <button id="next2" class="absolute top-1/2 -translate-y-1/2 right-1 hover:bg-green-500 hover:text-black bg-gray-200/60 p-2 rounded-full shadow-md transition-all duration-300 z-10 cursor-pointer opacity-65">
+                <button id="next2" class="absolute top-1/2 -translate-y-1/2 right-1 hover:bg-black hover:text-white bg-gray-200/60 p-2 rounded-full shadow-md transition-all duration-300 z-10 cursor-pointer opacity-65">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd" />
                     </svg>

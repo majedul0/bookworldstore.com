@@ -104,7 +104,7 @@ body {
         
 .thumbnail.active {
     opacity: 1;
-    border-color: #10b981;
+    border-color: #111111;
 }
         
 .thumbnail:hover {
@@ -131,7 +131,7 @@ body {
     .star-input label:hover,
     .star-input label:hover ~ label,
     .star-input input[type="radio"]:checked ~ label { color: #f59e0b; }
-    input:focus, textarea:focus { outline: none; border-color: #22c55e !important; box-shadow: 0 0 0 3px rgba(34,197,94,0.12); }
+    input:focus, textarea:focus { outline: none; border-color: #111111 !important; box-shadow: 0 0 0 3px rgba(17,17,17,0.12); }
     #formSection { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease; opacity: 0; }
     #formSection.open { max-height: 1200px; opacity: 1; }
         
@@ -237,8 +237,8 @@ padding-inline-start: 40px;}
 input:focus,
 textarea:focus {
     outline: none;
-    border-color: #22c55e !important;
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+    border-color: #111111 !important;
+    box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.12);
 }
 
 #formSection {

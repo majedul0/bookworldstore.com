@@ -32,7 +32,7 @@
 
                 <!-- Thumbnail Gallery -->
                 <div class="grid grid-cols-8 gap-2">
-                    <div class="thumbnail active border-2 border-green-500 rounded-lg overflow-hidden aspect-square"
+                    <div class="thumbnail active border-2 border-black rounded-lg overflow-hidden aspect-square"
                         data-image="{{$product->img_paths['original']}}">
                         <img src="{{$product->img_paths['small']}}" alt="{{$product->title}}" class="w-full h-full object-contain">
                     </div>
@@ -77,7 +77,7 @@
                         @if($product->prices['regular_price'] > 0)
                         <span class="text-xl original-price">৳{{$product->prices['regular_price']}}</span>
                         @endif
-                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold badge">
+                        <span class="bg-black text-white px-3 py-1 rounded-full text-sm font-semibold badge">
                             Lowest price <i class="fas fa-info-circle"></i>
                         </span>
                     </div>
@@ -92,7 +92,7 @@
                             $variations = $product->VariableProductData;
                         @endphp
                         @foreach ($variations as $variation)
-                            <label class="variant-option relative bg-white border-2 border-gray-200 rounded-lg px-4 py-3 cursor-pointer hover:border-green-500 hover:shadow-md transition-all">
+                            <label class="variant-option relative bg-white border-2 border-gray-200 rounded-lg px-4 py-3 cursor-pointer hover:border-black hover:shadow-md transition-all">
                                 <input type="radio" class="product_variation" name="product_variation" {{$loop->index == 0 ? 'checked' : ''}} value="{{$variation->id}}">
                                 @if($variation->regular_price)
                                 <div class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded-bl-lg rounded-tr-lg text-xs font-bold">
@@ -158,32 +158,32 @@
                 {{-- <!-- Product Features -->
                 <div class="grid grid-cols-5 gap-3 pt-4">
                     <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-2 bg-green-50 rounded-full flex items-center justify-center">
-                            <i class="fas fa-leaf text-green-600 text-2xl"></i>
+                        <div class="w-16 h-16 mx-auto mb-2 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-leaf text-black text-2xl"></i>
                         </div>
                         <p class="text-xs font-medium text-gray-700">Best of<br>Ayurveda</p>
                     </div>
                     <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-2 bg-green-50 rounded-full flex items-center justify-center">
-                            <i class="fas fa-hand-holding-heart text-green-600 text-2xl"></i>
+                        <div class="w-16 h-16 mx-auto mb-2 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-hand-holding-heart text-black text-2xl"></i>
                         </div>
                         <p class="text-xs font-medium text-gray-700">Dermats<br>Approved</p>
                     </div>
                     <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-2 bg-green-50 rounded-full flex items-center justify-center">
-                            <i class="fas fa-paw text-green-600 text-2xl"></i>
+                        <div class="w-16 h-16 mx-auto mb-2 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-paw text-black text-2xl"></i>
                         </div>
                         <p class="text-xs font-medium text-gray-700">Cruelty<br>Free</p>
                     </div>
                     <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-2 bg-green-50 rounded-full flex items-center justify-center">
-                            <i class="fas fa-ban text-green-600 text-2xl"></i>
+                        <div class="w-16 h-16 mx-auto mb-2 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-ban text-black text-2xl"></i>
                         </div>
                         <p class="text-xs font-medium text-gray-700">No<br>Toxins</p>
                     </div>
                     <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-2 bg-green-50 rounded-full flex items-center justify-center">
-                            <i class="fas fa-certificate text-green-600 text-2xl"></i>
+                        <div class="w-16 h-16 mx-auto mb-2 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-certificate text-black text-2xl"></i>
                         </div>
                         <p class="text-xs font-medium text-gray-700">FDA<br>Approved</p>
                     </div>
@@ -196,7 +196,7 @@
             <!-- Tab Navigation -->
             <div class="flex flex-wrap border-b border-gray-200 bg-gray-50">
                 <button
-                    class="cursor-pointer tab-button px-4 md:px-6 py-2 md:py-4 font-semibold text-blue-600 border-b-2 border-blue-600 hover:bg-gray-100 transition-colors"
+                    class="cursor-pointer tab-button px-4 md:px-6 py-2 md:py-4 font-semibold text-black border-b-2 border-black hover:bg-gray-100 transition-colors"
                     data-tab="description">
                     Description
                 </button>
@@ -283,7 +283,7 @@
                             <!-- Write a Review Button -->
                             <div class="shrink-0">
                                 <button id="writeBtn" onclick="toggleForm()"
-                                    class="cursor-pointer bg-green-500 hover:bg-green-600 active:scale-95 text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all shadow-sm">
+                                    class="cursor-pointer bg-black hover:bg-gray-800 active:scale-95 text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all shadow-sm">
                                     Write a review
                                 </button>
                             </div>
@@ -357,7 +357,7 @@
                                             Cancel review
                                         </button>
                                         <button type="submit"
-                                            class="flex-1 cursor-pointer bg-green-500 hover:bg-green-600 active:scale-95 text-white rounded-full py-2.5 text-sm font-semibold transition-all shadow-sm">
+                                            class="flex-1 cursor-pointer bg-black hover:bg-gray-800 active:scale-95 text-white rounded-full py-2.5 text-sm font-semibold transition-all shadow-sm">
                                             Submit Review
                                         </button>
                                     </div>
@@ -370,7 +370,7 @@
                         <div class="mt-6 space-y-5 border-t border-gray-100 pt-6">
                             @foreach($reviews as $review)
                             <div class="flex gap-4">
-                                <div class="shrink-0 w-9 h-9 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-bold text-sm uppercase">
+                                <div class="shrink-0 w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center text-black font-bold text-sm uppercase">
                                     {{ substr($review->name, 0, 1) }}
                                 </div>
                                 <div class="flex-1 min-w-0">
@@ -433,7 +433,7 @@
                     <div class="space-y-4">
                         <div class="flex items-start space-x-4">
                             <div
-                                class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                                class="flex-shrink-0 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-bold">
                                 1</div>
                             <div>
                                 <h4 class="font-semibold mb-1">Wet Your Face</h4>
@@ -442,7 +442,7 @@
                         </div>
                         <div class="flex items-start space-x-4">
                             <div
-                                class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                                class="flex-shrink-0 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-bold">
                                 2</div>
                             <div>
                                 <h4 class="font-semibold mb-1">Apply Facewash</h4>
@@ -451,7 +451,7 @@
                         </div>
                         <div class="flex items-start space-x-4">
                             <div
-                                class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                                class="flex-shrink-0 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-bold">
                                 3</div>
                             <div>
                                 <h4 class="font-semibold mb-1">Rinse Thoroughly</h4>
@@ -460,7 +460,7 @@
                         </div>
                         <div class="flex items-start space-x-4">
                             <div
-                                class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                                class="flex-shrink-0 w-8 h-8 bg-black text-white rounded-full flex items-center justify-center font-bold">
                                 4</div>
                             <div>
                                 <h4 class="font-semibold mb-1">Use Daily</h4>
@@ -475,31 +475,31 @@
                     <h2 class="text-2xl font-bold mb-4">Key Benefits</h2>
                     <ul class="space-y-3">
                         <li class="flex items-start space-x-3">
-                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                            <i class="fas fa-check-circle text-black mt-1"></i>
                             <span class="text-gray-700">Deep cleanses and detoxifies pores</span>
                         </li>
                         <li class="flex items-start space-x-3">
-                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                            <i class="fas fa-check-circle text-black mt-1"></i>
                             <span class="text-gray-700">Reduces acne and prevents breakouts</span>
                         </li>
                         <li class="flex items-start space-x-3">
-                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                            <i class="fas fa-check-circle text-black mt-1"></i>
                             <span class="text-gray-700">Controls excess oil production</span>
                         </li>
                         <li class="flex items-start space-x-3">
-                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                            <i class="fas fa-check-circle text-black mt-1"></i>
                             <span class="text-gray-700">Brightens and evens skin tone</span>
                         </li>
                         <li class="flex items-start space-x-3">
-                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                            <i class="fas fa-check-circle text-black mt-1"></i>
                             <span class="text-gray-700">Provides antioxidant protection</span>
                         </li>
                         <li class="flex items-start space-x-3">
-                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                            <i class="fas fa-check-circle text-black mt-1"></i>
                             <span class="text-gray-700">Soothes inflammation and redness</span>
                         </li>
                         <li class="flex items-start space-x-3">
-                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                            <i class="fas fa-check-circle text-black mt-1"></i>
                             <span class="text-gray-700">Suitable for all skin types, especially oily and
                                 acne-prone</span>
                         </li>
@@ -511,17 +511,17 @@
                     <h2 class="text-2xl font-bold mb-4">Recommended For</h2>
                     <div class="grid md:grid-cols-3 gap-4">
                         <div class="text-center p-6 bg-gray-50 rounded-lg">
-                            <i class="fas fa-user text-4xl text-blue-600 mb-3"></i>
+                            <i class="fas fa-user text-4xl text-black mb-3"></i>
                             <h4 class="font-semibold mb-2">Oily Skin</h4>
                             <p class="text-gray-700 text-sm">Controls excess sebum production</p>
                         </div>
                         <div class="text-center p-6 bg-gray-50 rounded-lg">
-                            <i class="fas fa-exclamation-triangle text-4xl text-blue-600 mb-3"></i>
+                            <i class="fas fa-exclamation-triangle text-4xl text-black mb-3"></i>
                             <h4 class="font-semibold mb-2">Acne-Prone Skin</h4>
                             <p class="text-gray-700 text-sm">Prevents and reduces breakouts</p>
                         </div>
                         <div class="text-center p-6 bg-gray-50 rounded-lg">
-                            <i class="fas fa-cloud text-4xl text-blue-600 mb-3"></i>
+                            <i class="fas fa-cloud text-4xl text-black mb-3"></i>
                             <h4 class="font-semibold mb-2">Dull Skin</h4>
                             <p class="text-gray-700 text-sm">Brightens and revitalizes complexion</p>
                         </div>
@@ -546,7 +546,7 @@
                     @endforeach
                 </div>
                 <button id="prev1"
-                    class="absolute top-1/2 -translate-y-1/2 left-1 hover:bg-green-500 hover:text-black bg-gray-200/60 p-2 rounded-full shadow-md transition-all cursor-pointer opacity-65 duration-300 z-10">
+                    class="absolute top-1/2 -translate-y-1/2 left-1 hover:bg-black hover:text-white bg-gray-200/60 p-2 rounded-full shadow-md transition-all cursor-pointer opacity-65 duration-300 z-10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd"
                             d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z"
@@ -554,7 +554,7 @@
                     </svg>
                 </button>
                 <button id="next1"
-                    class="absolute top-1/2 -translate-y-1/2 right-1 hover:bg-green-500 hover:text-black bg-gray-200/60 p-2 rounded-full shadow-md transition-all duration-300 z-10 cursor-pointer opacity-65">
+                    class="absolute top-1/2 -translate-y-1/2 right-1 hover:bg-black hover:text-white bg-gray-200/60 p-2 rounded-full shadow-md transition-all duration-300 z-10 cursor-pointer opacity-65">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd"
                             d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
@@ -638,11 +638,11 @@
     thumbnails.forEach(thumbnail => {
         thumbnail.addEventListener('click', function () {
             // Remove active class from all thumbnails
-            thumbnails.forEach(t => t.classList.remove('active', 'border-green-500'));
+            thumbnails.forEach(t => t.classList.remove('active', 'border-black'));
             thumbnails.forEach(t => t.classList.add('border-gray-200'));
 
             // Add active class to clicked thumbnail
-            this.classList.add('active', 'border-green-500');
+            this.classList.add('active', 'border-black');
             this.classList.remove('border-gray-200');
 
             // Update main image
@@ -729,12 +729,12 @@
 
             // Remove active state from all tabs
             tabButtons.forEach(btn => {
-                btn.classList.remove('text-blue-600', 'border-blue-600');
+                btn.classList.remove('text-black', 'border-black');
                 btn.classList.add('text-gray-600', 'border-transparent');
             });
 
             // Add active state to clicked tab
-            this.classList.add('text-blue-600', 'border-blue-600');
+            this.classList.add('text-black', 'border-black');
             this.classList.remove('text-gray-600', 'border-transparent');
 
             // Hide all tab contents

@@ -36,11 +36,11 @@
 
 <body>
     <!-- Top Bar -->
-    <div class="bg-green-700 py-2 text-white">
+    <div class="bg-black py-2 text-white">
         <div class="container mx-auto flex items-center justify-end px-4 text-sm">
             <div class="flex items-center gap-4">
                 @if ($socials['facebook'] ?? null)
-                <a href="{{ $socials['facebook'] }}" class="transition hover:text-green-200"><i class="fab fa-facebook"></i></a>
+                <a href="{{ $socials['facebook'] }}" class="transition hover:text-gray-300"><i class="fab fa-facebook"></i></a>
                 @endif
                 @if ($socials['youtube'] ?? null)
                 <a href="{{$socials['youtube']}}" class="transition hover:text-ref-200"><i class="fab fa-youtube"></i></a>
@@ -78,18 +78,18 @@
                         @foreach ($main_menu->SingleMenuItems as $menu_item)
                         @if(count($menu_item->Items))
                             <div class="dropdown relative">
-                                <button type="button" class="dropdown-toggle flex cursor-pointer items-center font-medium text-gray-700 transition hover:text-green-600">
+                                <button type="button" class="dropdown-toggle flex cursor-pointer items-center font-medium text-gray-700 transition hover:text-black">
                                     {{$menu_item->menu_info['text']}} <i class="fas fa-chevron-down ml-1 text-xs"></i>
                                 </button>
                                 <div class="dropdown-menu absolute left-0 top-full hidden w-48 rounded-md bg-white py-2 shadow-lg">
-                                    <a href="{{$menu_item->menu_info['url']}}" class="block px-4 py-2 font-semibold text-gray-700 hover:bg-green-50 hover:text-green-600">{{$menu_item->menu_info['text']}}</a>
+                                    <a href="{{$menu_item->menu_info['url']}}" class="block px-4 py-2 font-semibold text-gray-700 hover:bg-gray-100 hover:text-black">{{$menu_item->menu_info['text']}}</a>
                                     @foreach ($menu_item->Items as $item)
-                                        <a href="{{$item->menu_info['url']}}" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600">{{$item->menu_info['text']}}</a>
+                                        <a href="{{$item->menu_info['url']}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-black">{{$item->menu_info['text']}}</a>
                                     @endforeach
                                 </div>
                             </div>
                         @else
-                            <a href="{{$menu_item->menu_info['url']}}" class="font-medium text-gray-700 transition hover:text-green-600">{{$menu_item->menu_info['text']}}</a>
+                            <a href="{{$menu_item->menu_info['url']}}" class="font-medium text-gray-700 transition hover:text-black">{{$menu_item->menu_info['text']}}</a>
                         @endif
                         @endforeach
                         @else
@@ -102,7 +102,7 @@
                 <div class="flex items-center gap-4">
                     <a href="{{route('cart')}}" class="relative">
                         <i class="fas fa-shopping-cart text-xl text-gray-700"></i>
-                        <span class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-green-600 text-[10px] text-white top_cart_count">{{$cart_summary['count']}}</span>
+                        <span class="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] text-white top_cart_count">{{$cart_summary['count']}}</span>
                     </a>
                     <a href="{{route('cart')}}" class="font-medium text-gray-700 top_cart_summary">{{number_format($cart_summary['product_total'])}}৳</a>
                     <a href="#" class="text-2xl text-gray-700 lg:hidden" id="mobileMenuBtn">
@@ -120,7 +120,7 @@
     <div class="mobile-menu fixed left-0 top-0 z-50 h-full w-80 overflow-y-auto bg-white" id="mobileMenu">
         <div class="p-6">
             <div class="mb-8 flex items-center justify-between">
-                <span class="text-2xl font-bold text-blue-600">Menu</span>
+                <span class="text-2xl font-bold text-black">Menu</span>
                 <a href="#" class="text-2xl text-gray-700" id="closeMobileMenu">
                     <i class="fas fa-times"></i>
                 </a>
@@ -130,18 +130,18 @@
                 @foreach ($main_menu->SingleMenuItems as $menu_item)
                 @if(count($menu_item->Items))
                 <div>
-                    <button type="button" class="mobile-dropdown-toggle flex w-full items-center justify-between border-b border-b-gray-300 py-2 text-left font-medium text-gray-700 hover:text-green-600">
+                    <button type="button" class="mobile-dropdown-toggle flex w-full items-center justify-between border-b border-b-gray-300 py-2 text-left font-medium text-gray-700 hover:text-black">
                        {{$menu_item->menu_info['text']}} <i class="fas fa-chevron-down text-xs"></i>
                     </button>
                     <div class="mobile-dropdown-menu mt-2 hidden space-y-2 pl-4">
-                        <a href="{{$menu_item->menu_info['url']}}" class="block py-1 font-semibold text-gray-700 hover:text-green-600">{{$menu_item->menu_info['text']}}</a>
+                        <a href="{{$menu_item->menu_info['url']}}" class="block py-1 font-semibold text-gray-700 hover:text-black">{{$menu_item->menu_info['text']}}</a>
                         @foreach ($menu_item->Items as $item)
-                        <a href="{{$item->menu_info['url']}}" class="block py-1 text-gray-600 hover:text-green-600">{{$item->menu_info['text']}}</a>
+                        <a href="{{$item->menu_info['url']}}" class="block py-1 text-gray-600 hover:text-black">{{$item->menu_info['text']}}</a>
                         @endforeach
                     </div>
                 </div>
                 @else
-                <a href="{{$menu_item->menu_info['url']}}" class="block border-b border-b-gray-300 py-2 font-medium text-gray-700 hover:text-green-600">{{$menu_item->menu_info['text']}}</a>
+                <a href="{{$menu_item->menu_info['url']}}" class="block border-b border-b-gray-300 py-2 font-medium text-gray-700 hover:text-black">{{$menu_item->menu_info['text']}}</a>
                 @endif
                 @endforeach
                 @else
@@ -157,7 +157,7 @@
     <!-- Fixed Social Media Icons -->
     <div class="social-fixed hidden flex-col gap-3 rounded-l-lg bg-white p-3 shadow-lg lg:flex">
         @if ($socials['facebook'] ?? null)
-        <a href="{{$socials['facebook']}}" class="transform text-2xl text-blue-600 transition hover:scale-110 hover:text-blue-700">
+        <a href="{{$socials['facebook']}}" class="transform text-2xl text-black transition hover:scale-110 hover:text-gray-700">
             <i class="fab fa-facebook"></i>
         </a>
         @endif
@@ -213,13 +213,13 @@
                                 <li><i class="fas fa-envelope mr-2"></i> {{$settings_g['email'] ?? ''}}</li>
                                 <li class="mt-4 flex gap-3">
                                     @if ($socials['facebook'] ?? null)
-                                    <a href="{{$socials['facebook']}}" class="transition hover:text-green-400"><i class="fab fa-facebook text-xl"></i></a>
+                                    <a href="{{$socials['facebook']}}" class="transition hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
                                     @endif
                                     @if ($socials['youtube'] ?? null)
-                                    <a href="{{$socials['youtube']}}" class="transition hover:text-green-400"><i class="fab fa-youtube text-xl"></i></a>
+                                    <a href="{{$socials['youtube']}}" class="transition hover:text-white"><i class="fab fa-youtube text-xl"></i></a>
                                     @endif
                                     @if ($socials['tiktok'] ?? null)
-                                    <a href="{{$socials['tiktok']}}" class="transition hover:text-green-400"><i class="fab fa-tiktok text-xl"></i></a>
+                                    <a href="{{$socials['tiktok']}}" class="transition hover:text-white"><i class="fab fa-tiktok text-xl"></i></a>
                                     @endif
                                 </li>
                             </ul>
@@ -235,7 +235,7 @@
                             @if($widget->type == 'Menu' && $widget->Menu)
                             <ul class="space-y-2 text-gray-400">
                                 @foreach ($widget->Menu->SingleMenuItems as $item)
-                                <li><a href="{{$item->menu_info['url']}}" class="transition hover:text-green-400">{{$item->menu_info['text']}}</a></li>
+                                <li><a href="{{$item->menu_info['url']}}" class="transition hover:text-white">{{$item->menu_info['text']}}</a></li>
                                 @endforeach
                             </ul>
                             @endif

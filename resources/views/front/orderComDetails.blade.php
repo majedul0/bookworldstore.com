@@ -18,7 +18,7 @@
         'url' => '#'
     ])
 
-    <div class="bg-green-600 rounded text-center mb-2 text-white py-3 text-lg md:text-2xl px-2">
+    <div class="bg-black rounded text-center mb-2 text-white py-3 text-lg md:text-2xl px-2">
         Thank You. Your order has been received.
     </div>
 

@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 <label><b>Parent category</b></label>
 
-                                <select name="category_id" class="form-control form-control-sm">
+                                <select name="category_id" id="category_id_select" class="form-control form-control-sm">
                                     <option value="">Select parent category</option>
 
                                     @foreach ($categories as $category)
@@ -79,6 +79,11 @@
                                         @endforeach
                                     @endforeach
                                 </select>
+
+                                <div id="existing_subcategories" class="mt-2 small" style="display:none;">
+                                    <b>Existing subcategories under this category:</b>
+                                    <ul id="existing_subcategories_list" class="mb-0 pl-3"></ul>
+                                </div>
                             </div>
                         </div>
 
@@ -128,6 +133,34 @@
             CKEDITOR.replace('editor', {
                 height: 400
             });
+        });
+
+        // Show existing subcategories of the selected parent category
+        var subcategoriesMap = {
+            @foreach ($categories as $category)
+                {{ $category->id }}: [
+                    @foreach ($category->Categories as $sub_category)
+                        @json($sub_category->title),
+                    @endforeach
+                ],
+            @endforeach
+        };
+
+        $('#category_id_select').on('change', function () {
+            var subs = subcategoriesMap[$(this).val()] || [];
+            var $box = $('#existing_subcategories');
+            var $list = $('#existing_subcategories_list');
+
+            $list.empty();
+
+            if (subs.length) {
+                subs.forEach(function (title) {
+                    $list.append($('<li>').text(title));
+                });
+                $box.show();
+            } else {
+                $box.hide();
+            }
         });
     </script>
 @endsection
