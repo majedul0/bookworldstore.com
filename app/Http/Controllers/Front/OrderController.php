@@ -172,6 +172,13 @@ class OrderController extends Controller
         }
         $order->save();
 
+        // Clear the cart now that its contents have been copied to the order
+        if (auth()->user()) {
+            \App\Models\Product\Cart::where('user_id', auth()->user()->id)->delete();
+        } else {
+            \App\Models\Product\Cart::where('session_id', session()->getId())->delete();
+        }
+
         return redirect()->route('orderComDetails', $order->id)->with('success-alert', 'Order created success.');
     }
 
