@@ -34,7 +34,9 @@ class CartController extends Controller
         //     ->take(24)->get();
         // $related_products = $related_products->pluck('Product');
 
-        return view('front.cart', compact('carts'));
+        $payment_methods = \App\Models\PaymentMethod::active()->orderBy('position')->get();
+
+        return view('front.cart', compact('carts', 'payment_methods'));
     }
 
     public function checkout(){

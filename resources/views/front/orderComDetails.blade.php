@@ -80,7 +80,7 @@
                       Payment Method
                     </th>
                     <th scope="col" class="text-sm font-semibold text-gray-900 px-3 py-2 border-r">
-                        Cash on Delivery
+                        {{$order->payment_method ?? 'Cash on Delivery'}}
                     </th>
                 </tr>
             </tfoot>
