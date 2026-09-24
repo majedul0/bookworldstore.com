@@ -10,6 +10,7 @@
     $confirmed_orders = App\Models\Order\Order::where('status', 'Confirmed')->count();
     $canceled_orders = App\Models\Order\Order::where('status', 'Canceled')->count();
     $hold_orders = App\Models\Order\Order::where('status', 'Hold')->count();
+    $payment_received_orders = App\Models\Order\Order::where('payment_method', '!=', 'Cash on Delivery')->whereNotNull('payment_method')->where('payment_status', 'Pending')->count();
     $orders = App\Models\Order\Order::where('admin_read', 2)->count();
     $customers = App\Models\User::where('admin_read', 2)->where('type', 'customer')->active()->count();
 @endphp
@@ -149,6 +150,8 @@
             <ul class="sub_ms collapse {{(Route::is('back.orders.create') || Route::is('back.orders.index') || Route::is('back.orders.show')) ? 'show' : ''}}" id="collapse_order" data-parent="#sidebar_accordion">
               <li class="{{(request()->route()->getName() == 'back.orders.create') ? 'active_sub_menu' : ''}}"><a href="{{route('back.orders.create')}}"><i class="fas fa-circle"></i> Create new</a></li>
               <li class="{{((Route::is('back.orders.index') && request('ref') == 'All') || Route::is('back.orders.show')) ? 'active_sub_menu' : ''}}"><a href="{{route('back.orders.index')}}?ref=All"><i class="fas fa-circle"></i> All Orders @if($orders > 0)<span class="badge badge-primary" style="background: red;color: yellow;">{{$orders}}</span>@endif</a></li>
+
+              <li class="{{(Route::is('back.orders.index') && request('ref') == 'Payment Received') ? 'active_sub_menu' : ''}}"><a href="{{route('back.orders.index')}}?ref=Payment Received"><i class="fas fa-circle"></i> Payment Received @if($payment_received_orders)<span class="badge badge-primary" style="background: red;color: yellow;">{{$payment_received_orders}}</span>@endif</a></li>
               <li class="{{(Route::is('back.orders.index') && request('ref') == 'Pending') ? 'active_sub_menu' : ''}}"><a href="{{route('back.orders.index')}}?ref=Pending"><i class="fas fa-circle"></i> Pending @if($pending_orders)<span class="badge badge-primary" style="background: red;color: yellow;">{{$pending_orders}}</span>@endif</a></li>
 
               <li class="{{(Route::is('back.orders.index') && request('ref') == 'Confirmed') ? 'active_sub_menu' : ''}}"><a href="{{route('back.orders.index')}}?ref=Confirmed"><i class="fas fa-circle"></i> Confirmed @if($confirmed_orders)<span class="badge badge-primary" style="background: red;color: yellow;">{{$confirmed_orders}}</span>@endif</a></li>

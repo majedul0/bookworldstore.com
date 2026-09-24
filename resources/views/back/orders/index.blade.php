@@ -32,6 +32,7 @@
                     <th scope="col">Mobile Number</th>
                     <th scope="col">Total Amount</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Payment Info</th>
                     <th scope="col">Action</th>
                     <th scope="col">Staff Note</th>
                   </tr>
@@ -101,6 +102,7 @@
             {"data": "mobile_number"},
             {"data": "total_amount"},
             {"data": "status"},
+            {"data": "payment_info"},
             {"data": "action"},
             {"data": "staff_note"}
         ],

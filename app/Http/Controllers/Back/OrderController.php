@@ -509,6 +509,8 @@ class OrderController extends Controller
             $query->where('status', 'Completed')->where('tax_amount', '!=', 0);
         }elseif($request->status == 'PaidCoupon'){
             $query->where('payment_status', 'Paid')->where('coupon_code', '!=', null)->where('discount_amount', '!=', 0);
+        }elseif($request->status == 'Payment Received'){
+            $query->where('payment_method', '!=', 'Cash on Delivery')->whereNotNull('payment_method')->where('payment_status', 'Pending');
         }elseif($request->status != 'All'){
             $query->where('status', $request->status);
         }
@@ -583,9 +585,33 @@ class OrderController extends Controller
             $nestedData['status'] = $data->status . ($data->printed_at ? '<i class="fas fa-print ml-1 small"></i>' : '');
             $nestedData['tax_amount'] = amount($data->tax_amount, 2);
             $nestedData['payment_status'] = $data->payment_status;
+
+            if($data->payment_method && $data->payment_method != 'Cash on Delivery'){
+                $badge = $data->payment_status == 'Paid' ? 'success' : ($data->payment_status == 'Rejected' ? 'danger' : 'warning');
+                $nestedData['payment_info'] = '<b>'. e($data->payment_method) .'</b>'
+                    .'<br>Sender: '. e($data->payment_sender_number ?? 'N/A')
+                    .'<br>Amount: '. ($data->payment_claimed_amount ? amount($data->payment_claimed_amount) : 'N/A')
+                    .'<br>Txn ID: '. e($data->payment_transaction_id ?? 'N/A')
+                    .'<br><span class="badge badge-'. $badge .'">'. e($data->payment_status) .'</span>';
+            }else{
+                $nestedData['payment_info'] = 'Cash on Delivery';
+            }
+
             $nestedData['action'] = '<div>'
-                .'<a class="btn btn-success btn-sm" href="'. route('back.orders.show', $data->id) .'">Details</a> '
-                .'<form class="d-inline-block" action="'. route('back.orders.destroy', $data->id) .'" method="POST">'
+                .'<a class="btn btn-success btn-sm" href="'. route('back.orders.show', $data->id) .'">Details</a> ';
+
+            if($data->payment_method && $data->payment_method != 'Cash on Delivery' && $data->payment_status == 'Pending'){
+                $nestedData['action'] .= '<form class="d-inline-block" action="'. route('back.orders.confirmPayment', $data->id) .'" method="POST">'
+                        . csrf_field()
+                        .'<button type="submit" class="btn btn-primary btn-sm" onclick="return confirm(\'Confirm this payment?\')"><i class="fas fa-check"></i></button>'
+                    .'</form> '
+                    .'<form class="d-inline-block" action="'. route('back.orders.rejectPayment', $data->id) .'" method="POST">'
+                        . csrf_field()
+                        .'<button type="submit" class="btn btn-warning btn-sm" onclick="return confirm(\'Mark this payment as mismatched/fake?\')"><i class="fas fa-times"></i></button>'
+                    .'</form> ';
+            }
+
+            $nestedData['action'] .= '<form class="d-inline-block" action="'. route('back.orders.destroy', $data->id) .'" method="POST">'
                     .method_field('DELETE') . csrf_field()
                     .'<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure to remove?\')"><i class="fas fa-trash"></i></button>'
                 .'</form>'
