@@ -252,6 +252,24 @@ textarea:focus {
     max-height: 1200px;
     opacity: 1;
 }
+/* Top bar announcement marquee */
+.marquee-track {
+    animation: marquee 18s linear infinite;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.marquee-content {
+    padding-right: 1rem;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
 /* Equal height product cards inside Owl carousels */
 .owl-carousel .owl-stage {
     display: flex;

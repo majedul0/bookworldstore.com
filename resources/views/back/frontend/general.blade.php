@@ -46,6 +46,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-2 col-form-label col-form-label-sm"><b>Top bar announcement: </b></label>
+                            <div class="col-sm-8">
+                            <input type="text" class="form-control form-control-sm" name="announcement_text" value="{{$settings_g['announcement_text'] ?? ''}}" placeholder="e.g. Free shipping on orders over ৳1000! | New arrivals every week!">
+                            <small class="text-muted">Scrolls across the black bar at the top of every page. Separate multiple messages with a pipe (|). Leave empty to hide it.</small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label col-form-label-sm"><b>Mobile Number*: </b></label>
                             <div class="col-sm-8">
                             <input type="number" class="form-control form-control-sm" placeholder="Mobile Number" name="mobile_number" value="{{$settings_g['mobile_number'] ?? ''}}" required>

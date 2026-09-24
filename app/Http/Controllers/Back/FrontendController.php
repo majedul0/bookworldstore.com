@@ -50,6 +50,10 @@ class FrontendController extends Controller
         $insert['value'] = $request->headline;
         DB::table('settings')->updateOrInsert($where, $insert);
 
+        $where['name'] = 'announcement_text';
+        $insert['value'] = $request->announcement_text;
+        DB::table('settings')->updateOrInsert($where, $insert);
+
         $where['name'] = 'mobile_number';
         $insert['value'] = $request->mobile_number;
         DB::table('settings')->updateOrInsert($where, $insert);

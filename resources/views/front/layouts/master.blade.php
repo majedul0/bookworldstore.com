@@ -37,8 +37,24 @@
 <body>
     <!-- Top Bar -->
     <div class="bg-black py-2 text-white">
-        <div class="container mx-auto flex items-center justify-end px-4 text-sm">
-            <div class="flex items-center gap-4">
+        <div class="container mx-auto flex items-center justify-between px-4 text-sm">
+            @php
+                $announcement_parts = array_filter(array_map('trim', explode('|', $settings_g['announcement_text'] ?? '')));
+            @endphp
+            @if(count($announcement_parts))
+                <div class="mr-4 flex-1 overflow-hidden">
+                    <div class="marquee-track inline-flex whitespace-nowrap">
+                        @for ($i = 0; $i < 2; $i++)
+                            <span class="marquee-content" @if($i > 0) aria-hidden="true" @endif>
+                                @foreach ($announcement_parts as $part)
+                                    {{ $part }} <span class="mx-6 text-gray-500">•</span>
+                                @endforeach
+                            </span>
+                        @endfor
+                    </div>
+                </div>
+            @endif
+            <div class="flex items-center gap-4 shrink-0">
                 @if ($socials['facebook'] ?? null)
                 <a href="{{ $socials['facebook'] }}" class="transition hover:text-gray-300"><i class="fab fa-facebook"></i></a>
                 @endif
