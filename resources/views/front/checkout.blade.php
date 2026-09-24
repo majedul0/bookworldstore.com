@@ -139,27 +139,58 @@
                             <p>Subtotal</p>
                             <p>৳<span class="product_total">{{number_format($carts['product_total'], 2)}}</span><input type="hidden" class="product_total_input" value="{{$carts['product_total']}}"></p>
                         </div>
-                        <div class="flex justify-between border-b text-base font-medium text-font-color-dark">
-                            <p>Payment Method: </p>
-                            <p>Cash On Delivery</p>
+                        <div class="border-b text-base font-medium text-font-color-dark py-2">
+                            <p class="mb-2">Payment Method: </p>
+
+                            <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer">
+                                <input type="radio" name="payment_method" class="payment_method_radio information_field" value="Cash on Delivery" checked>
+                                Cash On Delivery
+                            </label>
+
+                            @foreach ($payment_methods as $payment_method)
+                            <label class="flex items-center gap-2 text-sm mb-2 cursor-pointer">
+                                <input type="radio" name="payment_method" class="payment_method_radio information_field" value="{{$payment_method->name}}" data-number="{{$payment_method->number}}" data-instructions="{{$payment_method->instructions}}">
+                                {{$payment_method->name}}
+                            </label>
+                            @endforeach
+
+                            @if(count($payment_methods))
+                            <div id="mobile_banking_details" class="hidden bg-gray-50 border rounded p-3 mt-2">
+                                <p class="font-semibold mb-1">Send money to: <span id="mb_number" class="font-mono"></span></p>
+                                <p id="mb_instructions" class="text-gray-600 text-xs mb-3"></p>
+
+                                <div class="mb-2">
+                                    <label class="block text-xs font-semibold mb-1">Sender Number*</label>
+                                    <input type="text" name="payment_sender_number" id="payment_sender_number" class="w-full border rounded px-2 py-1 text-sm">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="block text-xs font-semibold mb-1">Amount Sent*</label>
+                                    <input type="number" step="0.01" name="payment_claimed_amount" id="payment_claimed_amount" class="w-full border rounded px-2 py-1 text-sm">
+                                </div>
+                                <div class="mb-2">
+                                    <label class="block text-xs font-semibold mb-1">Transaction ID*</label>
+                                    <input type="text" name="payment_transaction_id" id="payment_transaction_id" class="w-full border rounded px-2 py-1 text-sm">
+                                </div>
+                            </div>
+                            @endif
                         </div>
                         <div class="border-b text-base font-medium text-font-color-dark">
                             {{-- <p>Shipping Charge: </p>
                             <p class="shipping_charge_text">60</p> --}}
 
                             <p class="text-right">
-                                <label class="text-sm mb-2"><input type="radio" class="change_area information_field" name="change_area" value="Outside Dhaka" checked=""> Outside Dhaka: ৳ 100.00</label>
+                                <label class="text-sm mb-2"><input type="radio" class="change_area information_field" name="change_area" value="Outside Dhaka" checked=""> Outside Dhaka: ৳ {{ number_format($settings_g['shipping_charge_out_dhaka'] ?? 100, 2) }}</label>
                                 <br>
-                                <label class="text-sm mb-2"><input type="radio" name="change_area" class="change_area information_field" value="Inside Dhaka"> Inside Dhaka: ৳ 60.00</label>
+                                <label class="text-sm mb-2"><input type="radio" name="change_area" class="change_area information_field" value="Inside Dhaka"> Inside Dhaka: ৳ {{ number_format($settings_g['shipping_charge'] ?? 60, 2) }}</label>
                             </p>
-                            <input type="hidden" class="delivery_charge_input" name="delivery_charge" value="100">
+                            <input type="hidden" class="delivery_charge_input" name="delivery_charge" value="{{ (float) ($settings_g['shipping_charge_out_dhaka'] ?? 100) }}">
                         </div>
                         <div class="flex justify-between border-b text-base font-medium text-font-color-dark">
                             <p>Grand Total: </p>
-                            <p>৳<span class="grand_total">{{number_format(($carts['product_total'] + 100), 2)}}</span></p>
+                            <p>৳<span class="grand_total">{{number_format($carts['product_total'] + ((float) ($settings_g['shipping_charge_out_dhaka'] ?? 100)), 2)}}</span></p>
                         </div>
 
-                        <input type="hidden" name="shipping_charge" class="shipping_charge" value="100">
+                        <input type="hidden" name="shipping_charge" class="shipping_charge" value="{{ (float) ($settings_g['shipping_charge_out_dhaka'] ?? 100) }}">
 
                         <div class="mt-6">
                             <a href="{{route('homepage')}}" class="text-center rounded-md bg-black px-3 py-0.5 text-sm font-medium text-white float-right mb-3">
@@ -204,8 +235,8 @@
 
 @section('footer')
     <script>
-        let inside_dhaka_delivery_charge = 60;
-        let outside_dhaka_delivery_charge = 100;
+        let inside_dhaka_delivery_charge = {{ (float) ($settings_g['shipping_charge'] ?? 60) }};
+        let outside_dhaka_delivery_charge = {{ (float) ($settings_g['shipping_charge_out_dhaka'] ?? 100) }};
 
         $(document).on('click', '.updateCart', function(){
             let shipping_charge = $('.shipping_charge').val();
@@ -255,6 +286,29 @@
                 $('.shipping_charge').val(Number(inside_dhaka_delivery_charge));
                 // $('.shipping_charge_text').html(Number(inside_dhaka_delivery_charge));
                 $('.grand_total').html((Number(product_total_input) + Number(inside_dhaka_delivery_charge)).toFixed(2));
+            }
+        });
+
+        $(document).on('change', '.payment_method_radio', function(){
+            let is_cod = $(this).val() == 'Cash on Delivery';
+            let $details = $('#mobile_banking_details');
+            let $sender = $('#payment_sender_number');
+            let $amount = $('#payment_claimed_amount');
+            let $txn = $('#payment_transaction_id');
+
+            if(is_cod){
+                $details.addClass('hidden');
+                $sender.prop('required', false);
+                $amount.prop('required', false);
+                $txn.prop('required', false);
+            }else{
+                $('#mb_number').text($(this).data('number'));
+                $('#mb_instructions').text($(this).data('instructions'));
+                $amount.val($('.grand_total').text());
+                $details.removeClass('hidden');
+                $sender.prop('required', true);
+                $amount.prop('required', true);
+                $txn.prop('required', true);
             }
         });
 

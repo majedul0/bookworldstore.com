@@ -258,9 +258,42 @@
                             <label><b>Payment Method</b></label>
 
                             <select name="payment_method" class="form-control form-control-sm" {{$order->payment_status == 'Paid' ? 'disabled' : 'required'}}>
-                                <option value="Cash on Delivery">Cash on Delivery</option>
+                                <option value="Cash on Delivery" {{$order->payment_method == 'Cash on Delivery' || !$order->payment_method ? 'selected' : ''}}>Cash on Delivery</option>
+                                @foreach ($payment_methods as $payment_method)
+                                    <option value="{{$payment_method->name}}" {{$order->payment_method == $payment_method->name ? 'selected' : ''}}>{{$payment_method->name}}</option>
+                                @endforeach
                             </select>
                         </div>
+
+                        @if($order->payment_method && $order->payment_method != 'Cash on Delivery')
+                        <div class="form-group border rounded p-2 bg-light">
+                            <p class="mb-1"><b>Sender Number:</b> {{$order->payment_sender_number ?? 'N/A'}}</p>
+                            <p class="mb-1"><b>Claimed Amount:</b> {{$order->payment_claimed_amount ? amount($order->payment_claimed_amount) : 'N/A'}}</p>
+                            <p class="mb-1"><b>Transaction ID:</b> {{$order->payment_transaction_id ?? 'N/A'}}</p>
+                            <p class="mb-2"><b>Verification Status:</b>
+                                @if($order->payment_status == 'Paid')
+                                    <span class="badge badge-success">Confirmed</span>
+                                @elseif($order->payment_status == 'Rejected')
+                                    <span class="badge badge-danger">Rejected / Mismatch</span>
+                                @else
+                                    <span class="badge badge-warning">Pending Review</span>
+                                @endif
+                            </p>
+
+                            @if($order->payment_status != 'Paid')
+                            <form action="{{route('back.orders.confirmPayment', $order->id)}}" method="POST" class="d-inline-block">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Confirm this payment matches your bKash/Nagad/Rocket statement?')"><i class="fas fa-check"></i> Confirm Payment</button>
+                            </form>
+                            @endif
+                            @if($order->payment_status != 'Rejected')
+                            <form action="{{route('back.orders.rejectPayment', $order->id)}}" method="POST" class="d-inline-block">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Mark this payment as mismatched/fake?')"><i class="fas fa-times"></i> Reject / Mismatch</button>
+                            </form>
+                            @endif
+                        </div>
+                        @endif
                     </div>
 
                     <div class="col-md-4">

@@ -272,7 +272,29 @@ class OrderController extends Controller
             $sources_arr = $collection->toArray();
         }
 
-        return view('back.orders.show', compact('order', 'op_returns', 'order_products', 'courier_config', 'total_orders', 'completed_orders', 'sources_arr'));
+        $payment_methods = \App\Models\PaymentMethod::orderBy('position')->get();
+
+        return view('back.orders.show', compact('order', 'op_returns', 'order_products', 'courier_config', 'total_orders', 'completed_orders', 'sources_arr', 'payment_methods'));
+    }
+
+    public function confirmPayment(Order $order)
+    {
+        if($order->payment_status != 'Paid'){
+            $order->payment_status = 'Paid';
+            $order->save();
+
+            OrderRepo::paid($order->id);
+        }
+
+        return redirect()->back()->with('success-alert', 'Payment confirmed.');
+    }
+
+    public function rejectPayment(Order $order)
+    {
+        $order->payment_status = 'Rejected';
+        $order->save();
+
+        return redirect()->back()->with('error-alert', 'Payment marked as mismatched/rejected.');
     }
 
     /**

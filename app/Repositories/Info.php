@@ -125,6 +125,7 @@ class Info {
                 ['name' => 'Media Settings', 'route' => 'back.media.settings||back.media.settingsUpdate'],
                 ['name' => 'Courier', 'route' => 'back.courier.config||back.courier.update'],
                 ['name' => 'SMS', 'route' => 'back.sms.config||back.sms.updateConfig'],
+                ['name' => 'Payment Methods', 'route' => 'back.paymentMethods.index||back.paymentMethods.create||back.paymentMethods.store||back.paymentMethods.edit||back.paymentMethods.update||back.paymentMethods.destroy'],
             ]
         ];
         // Accounts

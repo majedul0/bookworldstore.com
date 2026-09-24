@@ -12,6 +12,7 @@ use App\Http\Controllers\Back\MenuController;
 use App\Http\Controllers\Back\OrderController;
 use App\Http\Controllers\Back\OtherPageController;
 use App\Http\Controllers\Back\PageController;
+use App\Http\Controllers\Back\PaymentMethodController;
 use App\Http\Controllers\Back\Product\AttributeController;
 use App\Http\Controllers\Back\Product\BrandController;
 use App\Http\Controllers\Back\Product\CategoryController;
@@ -212,7 +213,12 @@ Route::middleware('auth', 'isAdmin')->group(function () {
     // Update Courier Status
     Route::get('orders/update-courier-status/{id}', [CourierController::class, 'updateCourierStatus'])->name('orders.updateCourierStatus');
     Route::post('orders/get-customer-data', [OrderController::class, 'getCustomerData'])->name('back.orders.getCustomerData');
+    Route::post('orders/confirm-payment/{order}', [OrderController::class, 'confirmPayment'])->name('back.orders.confirmPayment');
+    Route::post('orders/reject-payment/{order}', [OrderController::class, 'rejectPayment'])->name('back.orders.rejectPayment');
     Route::resource('orders', OrderController::class, ['as' => 'back']);
+
+    // Payment Methods
+    Route::resource('paymentMethods', PaymentMethodController::class, ['as' => 'back']);
 
     // Accounts Controller
     Route::prefix('accounts')->group(function () {

@@ -42,8 +42,9 @@ class CartController extends Controller
         CartRepo::refresh();
 
         $carts = CartRepo::summary();
+        $payment_methods = \App\Models\PaymentMethod::active()->orderBy('position')->get();
 
-        return view('front.checkout', compact('carts'));
+        return view('front.checkout', compact('carts', 'payment_methods'));
     }
 
     public function cartInfo(){

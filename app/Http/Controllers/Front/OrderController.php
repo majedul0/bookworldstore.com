@@ -42,6 +42,12 @@ class OrderController extends Controller
             'note' => 'nullable|max:2555'
         ];
 
+        if($request->payment_method && $request->payment_method != 'Cash on Delivery'){
+            $v_data['payment_sender_number'] = 'required|max:25';
+            $v_data['payment_claimed_amount'] = 'required|numeric';
+            $v_data['payment_transaction_id'] = 'required|max:100';
+        }
+
         $request->validate($v_data);
 
         // Refresh
@@ -149,6 +155,15 @@ class OrderController extends Controller
         $order->shipping_charge = $request->delivery_charge ?? 0;
         $order->shipping_method = 'Cash On delivery';
         $order->shipping_weight = 0;
+
+        // Payment
+        $order->payment_method = $request->payment_method ?: 'Cash on Delivery';
+        if($order->payment_method != 'Cash on Delivery'){
+            $order->payment_sender_number = $request->payment_sender_number;
+            $order->payment_claimed_amount = $request->payment_claimed_amount;
+            $order->payment_transaction_id = $request->payment_transaction_id;
+        }
+
         $order->save();
 
         // Insert order products

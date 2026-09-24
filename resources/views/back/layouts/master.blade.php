@@ -222,7 +222,7 @@
 
         @if(in_array('Purchase', $role_groups))
         @php
-            $settings_route = Route::is('back.frontend.general') || Route::is('back.pages.index') || Route::is('back.pages.create') || Route::is('back.pages.edit') || Route::is('back.menus.index') || Route::is('back.sliders.index') || Route::is('back.sliders.edit') || Route::is('back.media.settings') || Route::is('back.courier.config') || Route::is('back.sms.config') || Route::is('back.footer-widgets.index') || Route::is('back.footer-widgets.edit');
+            $settings_route = Route::is('back.frontend.general') || Route::is('back.pages.index') || Route::is('back.pages.create') || Route::is('back.pages.edit') || Route::is('back.menus.index') || Route::is('back.sliders.index') || Route::is('back.sliders.edit') || Route::is('back.media.settings') || Route::is('back.courier.config') || Route::is('back.sms.config') || Route::is('back.footer-widgets.index') || Route::is('back.footer-widgets.edit') || Route::is('back.paymentMethods.*');
         @endphp
         <li>
           <a href="" class="{{$settings_route ? 'active' : 'collapsed'}}" type="button" data-toggle="collapse" data-target="#collapse_frontend" aria-expanded="false"><i class="fas fa-cog"></i> Settings <i class="fas fa-chevron-right float-right text-right sub_menu_arrow"></i></a>
@@ -246,6 +246,10 @@
 
             @if(in_array('back.media.settings', $role_routes))
             <li class="{{(request()->route()->getName() == 'back.media.settings') ? 'active_sub_menu' : ''}}"><a href="{{route('back.media.settings')}}"><i class="fas fa-circle"></i> Media</a></li>
+            @endif
+
+            @if(in_array('back.paymentMethods.index', $role_routes))
+            <li class="{{(Route::is('back.paymentMethods.*')) ? 'active_sub_menu' : ''}}"><a href="{{route('back.paymentMethods.index')}}"><i class="fas fa-circle"></i> Payment Methods</a></li>
             @endif
 
             {{-- @if(in_array('back.courier.config', $role_routes))
